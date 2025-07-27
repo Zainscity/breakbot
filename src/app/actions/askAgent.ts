@@ -32,12 +32,9 @@ export async function askAgent(prompt: string, history: ChatMessage[] = []): Pro
     });
 
     return response.choices?.[0]?.message?.content || 'No response from Gemini';
-  } catch (err) {
-  if (err instanceof Error) {
-    console.error('Gemini Error:', err.message);
-  } else {
-    console.error('Gemini Error:', String(err));
-  }
+  } // eslint-disable-next-line @typescript-eslint/no-explicit-any
+catch (err: any) {
+  console.error('Gemini Error:', err.message);
   return '❌ Failed to fetch Gemini response';
 }
 
